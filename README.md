@@ -86,7 +86,7 @@ class H repair;
 ```mermaid
 %% Suggested export canvas: 1200x900 or 1600x1200, 4:3
 %% Topic: RavenAI business role in the R&D testing workflow
-%%{init: {"theme": "base", "flowchart": {"htmlLabels": true, "nodeSpacing": 14, "rankSpacing": 16, "curve": "basis"}, "themeVariables": {"fontFamily": "Arial, Microsoft YaHei", "primaryTextColor": "#0F172A", "lineColor": "#CBD5E1", "clusterBkg": "#FFFFFF", "clusterBorder": "#CBD5E1"}}}%%
+%%{init: {"theme": "base", "flowchart": {"htmlLabels": true, "nodeSpacing": 24, "rankSpacing": 30, "curve": "basis"}, "themeVariables": {"fontFamily": "Arial, Microsoft YaHei", "primaryTextColor": "#0F172A", "lineColor": "#CBD5E1", "clusterBkg": "#FFFFFF", "clusterBorder": "#CBD5E1"}}}%%
 
 flowchart TB
 
@@ -148,7 +148,7 @@ class C1,C2,C3,C4 data;
 ```mermaid
 %% Suggested export canvas: 1200x900 or 1600x1200, 4:3
 %% Topic: RavenAI agent capabilities
-%%{init: {"theme": "base", "flowchart": {"htmlLabels": true, "nodeSpacing": 14, "rankSpacing": 16, "curve": "basis"}, "themeVariables": {"fontFamily": "Arial, Microsoft YaHei", "primaryTextColor": "#0F172A", "lineColor": "#CBD5E1", "clusterBkg": "#FFFFFF", "clusterBorder": "#CBD5E1"}}}%%
+%%{init: {"theme": "base", "flowchart": {"htmlLabels": true, "nodeSpacing": 24, "rankSpacing": 30, "curve": "basis"}, "themeVariables": {"fontFamily": "Arial, Microsoft YaHei", "primaryTextColor": "#0F172A", "lineColor": "#CBD5E1", "clusterBkg": "#FFFFFF", "clusterBorder": "#CBD5E1"}}}%%
 
 flowchart TB
 

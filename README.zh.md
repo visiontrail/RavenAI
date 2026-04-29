@@ -86,7 +86,7 @@ class H repair;
 ```mermaid
 %% 建议导出画布：1200x900 或 1600x1200，4:3
 %% 主题：RavenAI 在研发测试流程中的业务作用
-%%{init: {"theme": "base", "flowchart": {"htmlLabels": true, "nodeSpacing": 14, "rankSpacing": 16, "curve": "basis"}, "themeVariables": {"fontFamily": "Arial, Microsoft YaHei", "primaryTextColor": "#0F172A", "lineColor": "#CBD5E1", "clusterBkg": "#FFFFFF", "clusterBorder": "#CBD5E1"}}}%%
+%%{init: {"theme": "base", "flowchart": {"htmlLabels": true, "nodeSpacing": 24, "rankSpacing": 30, "curve": "basis"}, "themeVariables": {"fontFamily": "Arial, Microsoft YaHei", "primaryTextColor": "#0F172A", "lineColor": "#CBD5E1", "clusterBkg": "#FFFFFF", "clusterBorder": "#CBD5E1"}}}%%
 
 flowchart TB
 
@@ -148,7 +148,7 @@ class C1,C2,C3,C4 data;
 ```mermaid
 %% 建议导出画布：1200x900 或 1600x1200，4:3
 %% 主题：RavenAI 的 Agent 能力架构
-%%{init: {"theme": "base", "flowchart": {"htmlLabels": true, "nodeSpacing": 14, "rankSpacing": 16, "curve": "basis"}, "themeVariables": {"fontFamily": "Arial, Microsoft YaHei", "primaryTextColor": "#0F172A", "lineColor": "#CBD5E1", "clusterBkg": "#FFFFFF", "clusterBorder": "#CBD5E1"}}}%%
+%%{init: {"theme": "base", "flowchart": {"htmlLabels": true, "nodeSpacing": 24, "rankSpacing": 30, "curve": "basis"}, "themeVariables": {"fontFamily": "Arial, Microsoft YaHei", "primaryTextColor": "#0F172A", "lineColor": "#CBD5E1", "clusterBkg": "#FFFFFF", "clusterBorder": "#CBD5E1"}}}%%
 
 flowchart TB
 
