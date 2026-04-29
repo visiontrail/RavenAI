@@ -19,6 +19,68 @@ RavenAI 围绕真实研发测试流程设计：
 4. 测试人员通过 RavenClient、ChatAgent、Device Link、MCP Server、OAM 工具和 Python 自动化脚本，用自然语言管理测试设备。
 5. 测试完成后，日志提交至 RavenAIService，由 LogAnalysisAgent 分析并产出证据链、问题线索和研发回流建议。
 
+## 研发测试流程对比
+
+没有 Agent 参与时，研发测试流程主要依赖人工交接、人工找包、手动操作设备和人工查日志：
+
+```mermaid
+%%{init: {"theme": "base", "flowchart": {"htmlLabels": true, "nodeSpacing": 24, "rankSpacing": 24, "curve": "basis"}, "themeVariables": {"fontFamily": "Arial, Microsoft YaHei", "primaryTextColor": "#0F172A", "lineColor": "#64748B"}}}%%
+
+flowchart LR
+
+A["研发提交"] --> B["人工写说明"]
+B --> C["人工传包"]
+C --> D["人工找包"]
+D --> E["手动控设备"]
+E --> F["日志散落"]
+F --> G["人工查日志"]
+G --> H["研发修复"]
+
+P1["沟通反复"] -.-> B
+P2["版本易乱"] -.-> C
+P3["操作门槛高"] -.-> E
+P4["定位耗时"] -.-> G
+
+classDef normal fill:#F8FAFC,stroke:#64748B,stroke-width:1.3px,color:#0F172A;
+classDef manual fill:#FEF2F2,stroke:#DC2626,stroke-width:1.5px,color:#7F1D1D;
+classDef pain fill:#FFF7ED,stroke:#EA580C,stroke-width:1.3px,color:#7C2D12;
+
+class A,H normal;
+class B,C,D,E,F,G manual;
+class P1,P2,P3,P4 pain;
+```
+
+在 RavenAI 中，Agent 进入说明生成、包管理、查包、设备控制和日志分析这些关键摩擦点：
+
+```mermaid
+%%{init: {"theme": "base", "flowchart": {"htmlLabels": true, "nodeSpacing": 24, "rankSpacing": 24, "curve": "basis"}, "themeVariables": {"fontFamily": "Arial, Microsoft YaHei", "primaryTextColor": "#0F172A", "lineColor": "#475569"}}}%%
+
+flowchart LR
+
+A["研发提交"] --> B["Agent写说明"]
+B --> C["Agent管包"]
+C --> D["Agent查包"]
+D --> E["Agent控设备"]
+E --> F["日志入库"]
+F --> G["Agent析日志"]
+G --> H["研发修复"]
+
+V1["降沟通成本"] -.-> B
+V2["降交付成本"] -.-> C
+V3["降操作门槛"] -.-> E
+V4["缩短定位"] -.-> G
+
+classDef normal fill:#F8FAFC,stroke:#64748B,stroke-width:1.3px,color:#0F172A;
+classDef agent fill:#F5F3FF,stroke:#7C3AED,stroke-width:1.7px,color:#1E1B4B;
+classDef value fill:#ECFDF5,stroke:#059669,stroke-width:1.3px,color:#064E3B;
+classDef repair fill:#FFF7ED,stroke:#EA580C,stroke-width:1.5px,color:#7C2D12;
+
+class A,F normal;
+class B,C,D,E,G agent;
+class V1,V2,V3,V4 value;
+class H repair;
+```
+
 ## 业务作用矩阵
 
 ```mermaid

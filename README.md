@@ -19,6 +19,68 @@ RavenAI is designed around the real R&D testing loop:
 4. Testers use natural language to operate test devices through RavenClient, ChatAgent, Device Link, MCP Server, OAM tools, and Python automation.
 5. After testing, logs are submitted to RavenAIService and analyzed by LogAnalysisAgent to produce evidence, issue clues, and feedback for development.
 
+## R&D Testing Flow Comparison
+
+Without Agent participation, the R&D testing flow relies on manual handoffs, manual package lookup, manual device operations, and manual log inspection:
+
+```mermaid
+%%{init: {"theme": "base", "flowchart": {"htmlLabels": true, "nodeSpacing": 24, "rankSpacing": 24, "curve": "basis"}, "themeVariables": {"fontFamily": "Arial, Microsoft YaHei", "primaryTextColor": "#0F172A", "lineColor": "#64748B"}}}%%
+
+flowchart LR
+
+A["Code Commit"] --> B["Manual Notes"]
+B --> C["Manual Package"]
+C --> D["Manual Search"]
+D --> E["Manual Test"]
+E --> F["Scattered Logs"]
+F --> G["Manual Debug"]
+G --> H["Fix"]
+
+P1["Repeated Handoff"] -.-> B
+P2["Version Drift"] -.-> C
+P3["High Ops Barrier"] -.-> E
+P4["Slow Diagnosis"] -.-> G
+
+classDef normal fill:#F8FAFC,stroke:#64748B,stroke-width:1.3px,color:#0F172A;
+classDef manual fill:#FEF2F2,stroke:#DC2626,stroke-width:1.5px,color:#7F1D1D;
+classDef pain fill:#FFF7ED,stroke:#EA580C,stroke-width:1.3px,color:#7C2D12;
+
+class A,H normal;
+class B,C,D,E,F,G manual;
+class P1,P2,P3,P4 pain;
+```
+
+With RavenAI, Agents sit in the key friction points: release notes, package management, package retrieval, device control, and log analysis:
+
+```mermaid
+%%{init: {"theme": "base", "flowchart": {"htmlLabels": true, "nodeSpacing": 24, "rankSpacing": 24, "curve": "basis"}, "themeVariables": {"fontFamily": "Arial, Microsoft YaHei", "primaryTextColor": "#0F172A", "lineColor": "#475569"}}}%%
+
+flowchart LR
+
+A["Code Commit"] --> B["Agent Notes"]
+B --> C["Agent Packages"]
+C --> D["Agent Search"]
+D --> E["Agent Device"]
+E --> F["Log Staging"]
+F --> G["Agent Analysis"]
+G --> H["Fix"]
+
+V1["Less Handoff"] -.-> B
+V2["Lower Delivery Cost"] -.-> C
+V3["Lower Ops Barrier"] -.-> E
+V4["Faster Diagnosis"] -.-> G
+
+classDef normal fill:#F8FAFC,stroke:#64748B,stroke-width:1.3px,color:#0F172A;
+classDef agent fill:#F5F3FF,stroke:#7C3AED,stroke-width:1.7px,color:#1E1B4B;
+classDef value fill:#ECFDF5,stroke:#059669,stroke-width:1.3px,color:#064E3B;
+classDef repair fill:#FFF7ED,stroke:#EA580C,stroke-width:1.5px,color:#7C2D12;
+
+class A,F normal;
+class B,C,D,E,G agent;
+class V1,V2,V3,V4 value;
+class H repair;
+```
+
 ## Business Role Matrix
 
 ```mermaid
