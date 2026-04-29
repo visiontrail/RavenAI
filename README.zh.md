@@ -155,14 +155,6 @@ flowchart TB
 subgraph M["Agent 能力矩阵"]
 direction TB
 
-  subgraph H[" "]
-  direction LR
-    H1["Release Note"]
-    H2["包管理检索"]
-    H3["设备 ChatAgent"]
-    H4["日志分析"]
-  end
-
   subgraph R1["输入理解"]
   direction LR
     A1["Git 提交<br/>变更识别<br/>版本背景"]

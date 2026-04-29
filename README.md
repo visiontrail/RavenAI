@@ -155,14 +155,6 @@ flowchart TB
 subgraph M["Agent Capability Matrix"]
 direction TB
 
-  subgraph H[" "]
-  direction LR
-    H1["Release Note"]
-    H2["Package<br/>Search"]
-    H3["Device<br/>ChatAgent"]
-    H4["Log<br/>Analysis"]
-  end
-
   subgraph R1["Input Understanding"]
   direction LR
     A1["Git commits<br/>Change detection<br/>Version context"]
