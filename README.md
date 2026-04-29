@@ -29,17 +29,17 @@ Without Agent participation, the R&D testing flow relies on manual handoffs, man
 flowchart LR
 
 A["Code Commit"] --> B["Manual Notes"]
-B --> C["Manual Package"]
-C --> D["Manual Search"]
-D --> E["Manual Test"]
+B --> C["Package Handoff"]
+C --> D["Package Search"]
+D --> E["Device Ops"]
 E --> F["Scattered Logs"]
 F --> G["Manual Debug"]
 G --> H["Fix"]
 
-P1["Repeated Handoff"] -.-> B
+P1["Handoff Loops"] -.-> B
 P2["Version Drift"] -.-> C
-P3["High Ops Barrier"] -.-> E
-P4["Slow Diagnosis"] -.-> G
+P3["High Barrier"] -.-> E
+P4["Slow Debug"] -.-> G
 
 classDef normal fill:#F8FAFC,stroke:#64748B,stroke-width:1.3px,color:#0F172A;
 classDef manual fill:#FEF2F2,stroke:#DC2626,stroke-width:1.5px,color:#7F1D1D;
@@ -66,8 +66,8 @@ F --> G["Agent Analysis"]
 G --> H["Fix"]
 
 V1["Less Handoff"] -.-> B
-V2["Lower Delivery Cost"] -.-> C
-V3["Lower Ops Barrier"] -.-> E
+V2["Lower Delivery"] -.-> C
+V3["Lower Barrier"] -.-> E
 V4["Faster Diagnosis"] -.-> G
 
 classDef normal fill:#F8FAFC,stroke:#64748B,stroke-width:1.3px,color:#0F172A;
@@ -95,42 +95,42 @@ direction TB
 
   subgraph H[" "]
   direction LR
-    H1["R&D Asset<br/>Accumulation"]
-    H2["Release Package<br/>Delivery"]
-    H3["Test Execution<br/>Acceleration"]
-    H4["Issue Analysis<br/>Feedback"]
+    H1["R&D Assets"]
+    H2["Package<br/>Delivery"]
+    H3["Faster<br/>Testing"]
+    H4["Analysis<br/>Feedback"]
   end
 
   subgraph R1["Core Scenario"]
   direction LR
-    A1["Code submission<br/>PR / Tag / version evolution<br/>Traceable engineering assets"]
-    A2["Reconstructed package management<br/>Patch / config / full package<br/>Unified upload, download, statistics"]
-    A3["Natural-language device control<br/>Status query / upgrade / configuration<br/>Fewer manual Linux operations"]
-    A4["Post-test log submission<br/>Unified staging, management, retrieval<br/>Reusable test records"]
+    A1["Code commits<br/>PR / Tag<br/>Version trace"]
+    A2["Package management<br/>Patch / config / full<br/>Upload / download"]
+    A3["Device control<br/>Status / upgrade / config<br/>Fewer commands"]
+    A4["Log submission<br/>Stage / search<br/>Test records"]
   end
 
   subgraph R2["Workflow Value"]
   direction LR
-    B1["Lower handoff cost<br/>Version changes are traceable<br/>Release notes preserve context"]
-    B2["Less version confusion<br/>Testers find target packages quickly<br/>Filter by version, type, and tags"]
-    B3["Lower device operation barrier<br/>Testers focus on intent<br/>AI decomposes intent into actions"]
-    B4["Shorter debugging loop<br/>Extract key errors from logs<br/>Feed conclusions back to development"]
+    B1["Less handoff<br/>Trace changes<br/>Auto notes"]
+    B2["Less version drift<br/>Fast package find<br/>Tag filters"]
+    B3["Lower barrier<br/>Focus on tests<br/>Intent to action"]
+    B4["Faster debug<br/>Extract errors<br/>Feedback loop"]
   end
 
   subgraph R3["Direct Output"]
   direction LR
-    C1[("Commit records<br/>Version history<br/>Release note input")]
-    C2[("Package assets<br/>uploads<br/>package-metadata.json<br/>vector-store")]
-    C3[("Device status and receipts<br/>Upgrade result<br/>Configuration result<br/>Task record")]
-    C4[("Logs and analysis conclusions<br/>Key errors<br/>Root-cause clues<br/>Fix suggestions")]
+    C1[("Commit records<br/>Version history<br/>Release notes")]
+    C2[("Packages<br/>metadata<br/>vector-store")]
+    C3[("Device status<br/>Receipts<br/>Task records")]
+    C4[("Log findings<br/>Root-cause clues<br/>Fix suggestions")]
   end
 
 end
 
-C1 -. "Supports package-change notes" .- A2
-C2 -. "Provides versions for testing" .- A3
-C3 -. "Produces test logs" .- A4
-C4 -. "Feeds issues back" .- A1
+C1 -. "Supports notes" .- A2
+C2 -. "Select version + Test version" .- A3
+C3 -. "Creates logs" .- A4
+C4 -. "Feeds back" .- A1
 
 classDef head fill:#0F172A,stroke:#0F172A,stroke-width:1.2px,color:#FFFFFF;
 classDef scene fill:#FFF7ED,stroke:#EA580C,stroke-width:1.2px,color:#7C2D12;
@@ -157,26 +157,26 @@ direction TB
 
   subgraph H[" "]
   direction LR
-    H1["Release Note<br/>Agent"]
-    H2["Package Management<br/>and Retrieval"]
-    H3["Device Testing<br/>ChatAgent"]
-    H4["Log Analysis<br/>LogAnalysisAgent"]
+    H1["Release Note"]
+    H2["Package<br/>Search"]
+    H3["Device<br/>ChatAgent"]
+    H4["Log<br/>Analysis"]
   end
 
   subgraph R1["Input Understanding"]
   direction LR
-    A1["Reads Git commits<br/>Identifies package-management refactor changes<br/>Extracts version context"]
-    A2["Understands package metadata<br/>Version / type / component / tag<br/>Supports natural-language queries"]
-    A3["Understands tester goals<br/>Combines device capability prompts<br/>Recognizes query, upgrade, config actions"]
-    A4["Understands logs and issue descriptions<br/>Infers stack / OAM / antenna types<br/>Reads metadata.json"]
+    A1["Git commits<br/>Change detection<br/>Version context"]
+    A2["Package metadata<br/>Version / type / tag<br/>Natural queries"]
+    A3["Tester goals<br/>Device capability<br/>Action detection"]
+    A4["Logs and issues<br/>Type detection<br/>metadata.json"]
   end
 
   subgraph R2["Reasoning and Execution"]
   direction LR
-    B1["Generates release notes<br/>Organizes changes from Git history<br/>Captures process context outside code"]
-    B2["RAG package search<br/>Embeddings + FAISS + LLM<br/>Similarity search / suggestions / index rebuild"]
-    B3["LangGraph ReAct<br/>Plan / Act / Observe<br/>Single-step device_prompt guardrail<br/>Avoids unsafe chained operations"]
-    B4["LangGraph ReAct analysis<br/>Plan / search / read / summarize<br/>grep / fs / metadata / archive / search"]
+    B1["Generate notes<br/>Organize commits<br/>Add context"]
+    B2["RAG search<br/>FAISS + LLM<br/>Suggest / rebuild"]
+    B3["LangGraph ReAct<br/>Plan / Act / Observe<br/>Single-step guardrail"]
+    B4["ReAct analysis<br/>Search / read / summarize<br/>Tool calls"]
   end
 
   subgraph R3["Technical Anchor"]
@@ -189,18 +189,18 @@ direction TB
 
   subgraph R4["Output"]
   direction LR
-    D1[("Package-management release notes<br/>Change summary<br/>Impact scope<br/>Testing focus")]
-    D2[("Target packages<br/>Recommended version<br/>Match reason<br/>Downloadable asset")]
-    D3[("Device action results<br/>Status query<br/>Upgrade receipt<br/>Configuration result<br/>Execution evidence")]
-    D4[("Log analysis report<br/>Key errors<br/>Evidence chain<br/>Root-cause clues<br/>Fix suggestions")]
+    D1[("Release notes<br/>Change summary<br/>Test focus")]
+    D2[("Target package<br/>Recommended version<br/>Match reason")]
+    D3[("Device result<br/>Status / upgrade / config<br/>Evidence")]
+    D4[("Analysis report<br/>Key errors<br/>Fix suggestions")]
   end
 
 end
 
-D1 -. "Explains version changes" .- A2
-D2 -. "Enters device testing" .- A3
-D3 -. "Produces log evidence" .- A4
-D4 -. "Feeds fixes back" .- A1
+D1 -. "Explains version" .- A2
+D2 -. "Starts testing" .- A3
+D3 -. "Produces logs" .- A4
+D4 -. "Feeds fixes" .- A1
 
 classDef head fill:#312E81,stroke:#312E81,stroke-width:1.2px,color:#FFFFFF;
 classDef input fill:#FFF7ED,stroke:#EA580C,stroke-width:1.2px,color:#7C2D12;

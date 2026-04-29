@@ -28,18 +28,18 @@ RavenAI 围绕真实研发测试流程设计：
 
 flowchart LR
 
-A["研发提交"] --> B["人工写说明"]
-B --> C["人工传包"]
-C --> D["人工找包"]
-D --> E["手动控设备"]
+A["研发提交"] --> B["写说明"]
+B --> C["传包"]
+C --> D["找包"]
+D --> E["控设备"]
 E --> F["日志散落"]
-F --> G["人工查日志"]
+F --> G["查日志"]
 G --> H["研发修复"]
 
 P1["沟通反复"] -.-> B
-P2["版本易乱"] -.-> C
-P3["操作门槛高"] -.-> E
-P4["定位耗时"] -.-> G
+P2["版本混乱"] -.-> C
+P3["门槛高"] -.-> E
+P4["定位慢"] -.-> G
 
 classDef normal fill:#F8FAFC,stroke:#64748B,stroke-width:1.3px,color:#0F172A;
 classDef manual fill:#FEF2F2,stroke:#DC2626,stroke-width:1.5px,color:#7F1D1D;
@@ -57,7 +57,7 @@ class P1,P2,P3,P4 pain;
 
 flowchart LR
 
-A["研发提交"] --> B["Agent写说明"]
+A["研发提交"] --> B["Agent说明"]
 B --> C["Agent管包"]
 C --> D["Agent查包"]
 D --> E["Agent控设备"]
@@ -65,10 +65,10 @@ E --> F["日志入库"]
 F --> G["Agent析日志"]
 G --> H["研发修复"]
 
-V1["降沟通成本"] -.-> B
-V2["降交付成本"] -.-> C
-V3["降操作门槛"] -.-> E
-V4["缩短定位"] -.-> G
+V1["降沟通"] -.-> B
+V2["降交付"] -.-> C
+V3["降门槛"] -.-> E
+V4["快定位"] -.-> G
 
 classDef normal fill:#F8FAFC,stroke:#64748B,stroke-width:1.3px,color:#0F172A;
 classDef agent fill:#F5F3FF,stroke:#7C3AED,stroke-width:1.7px,color:#1E1B4B;
@@ -95,42 +95,42 @@ direction TB
 
   subgraph H[" "]
   direction LR
-    H1["研发资产沉淀"]
-    H2["升级包交付"]
-    H3["测试执行提效"]
-    H4["问题分析回流"]
+    H1["研发资产"]
+    H2["包交付"]
+    H3["测试提效"]
+    H4["分析回流"]
   end
 
   subgraph R1["核心场景"]
   direction LR
-    A1["研发代码提交<br/>PR / Tag / 版本演进<br/>形成可追踪研发资产"]
-    A2["重构升级包管理<br/>补丁包 / 配置包 / 完整包<br/>统一上传、下载、统计"]
-    A3["自然语言管理测试设备<br/>查询状态 / 启动升级 / 下发配置<br/>减少手工 Linux 操作"]
-    A4["测试完成后提交日志<br/>统一暂存、管理、检索<br/>沉淀可复用测试记录"]
+    A1["代码提交<br/>PR / Tag<br/>版本追踪"]
+    A2["包管理<br/>补丁 / 配置 / 完整包<br/>上传下载"]
+    A3["设备控制<br/>查状态 / 升级 / 配置<br/>少敲命令"]
+    A4["日志提交<br/>暂存 / 检索<br/>测试留痕"]
   end
 
   subgraph R2["流程价值"]
   direction LR
-    B1["降低研发交付沟通成本<br/>版本变化有据可查<br/>Release Note 自动补齐背景"]
-    B2["减少包分发与版本混乱<br/>测试人员始终可找到目标包<br/>支持按版本、类型、标签筛选"]
-    B3["降低设备操作门槛<br/>测试人员专注测试目标<br/>AI 将意图拆成可执行动作"]
-    B4["缩短问题定位链路<br/>从日志中提取关键错误<br/>将结论回流给研发修复"]
+    B1["少沟通<br/>变更可查<br/>自动说明"]
+    B2["少乱版<br/>快速找包<br/>标签筛选"]
+    B3["低门槛<br/>聚焦测试<br/>意图转动作"]
+    B4["快定位<br/>提取错误<br/>结论回流"]
   end
 
   subgraph R3["直接产物"]
   direction LR
-    C1[("提交记录<br/>版本历史<br/>包管理重构说明")]
-    C2[("升级包资产<br/>uploads<br/>package-metadata.json<br/>vector-store")]
-    C3[("设备状态与执行回执<br/>升级结果<br/>配置结果<br/>任务记录")]
-    C4[("日志与分析结论<br/>关键错误<br/>根因线索<br/>修复建议")]
+    C1[("提交记录<br/>版本历史<br/>Release Note")]
+    C2[("升级包<br/>metadata<br/>vector-store")]
+    C3[("设备状态<br/>执行回执<br/>任务记录")]
+    C4[("日志结论<br/>根因线索<br/>修复建议")]
   end
 
 end
 
-C1 -. "支撑包管理说明" .- A2
-C2 -. "供测试选择版本" .- A3
-C3 -. "产生测试日志" .- A4
-C4 -. "问题回流研发" .- A1
+C1 -. "支撑说明" .- A2
+C2 -. "选择版本+测试版本" .- A3
+C3 -. "生成日志" .- A4
+C4 -. "回流研发" .- A1
 
 classDef head fill:#0F172A,stroke:#0F172A,stroke-width:1.2px,color:#FFFFFF;
 classDef scene fill:#FFF7ED,stroke:#EA580C,stroke-width:1.2px,color:#7C2D12;
@@ -157,26 +157,26 @@ direction TB
 
   subgraph H[" "]
   direction LR
-    H1["Release Note Agent"]
-    H2["包管理与检索 Agent 能力"]
-    H3["设备测试 ChatAgent"]
-    H4["日志分析 LogAnalysisAgent"]
+    H1["Release Note"]
+    H2["包管理检索"]
+    H3["设备 ChatAgent"]
+    H4["日志分析"]
   end
 
   subgraph R1["输入理解"]
   direction LR
-    A1["读取 Git 提交记录<br/>识别包管理重构相关变更<br/>提炼版本演进背景"]
-    A2["理解升级包元数据<br/>版本 / 类型 / 组件 / 标签<br/>支持自然语言查询意图"]
-    A3["理解测试人员目标<br/>结合设备能力提示<br/>识别查询、升级、配置等动作"]
-    A4["理解日志包与问题描述<br/>识别 stack / OAM / antenna 类型<br/>读取 metadata.json"]
+    A1["Git 提交<br/>变更识别<br/>版本背景"]
+    A2["包元数据<br/>版本 / 类型 / 标签<br/>自然语言查询"]
+    A3["测试目标<br/>设备能力<br/>动作识别"]
+    A4["日志与问题<br/>类型识别<br/>metadata.json"]
   end
 
   subgraph R2["推理与执行"]
   direction LR
-    B1["自动生成 Release Note<br/>从提交历史组织变更说明<br/>补齐代码库外研发流程信息"]
-    B2["RAG 智能检索<br/>Embeddings + FAISS + LLM<br/>相似度搜索 / 搜索建议 / 索引重建"]
-    B3["LangGraph ReAct<br/>Plan → Act → Observe<br/>device_prompt 单步护栏<br/>避免一次执行复杂串联操作"]
-    B4["LangGraph ReAct 分析<br/>计划 / 检索 / 读取 / 总结<br/>grep / fs / metadata / archive / search"]
+    B1["生成 Release Note<br/>整理提交<br/>补齐背景"]
+    B2["RAG 检索<br/>FAISS + LLM<br/>建议 / 重建"]
+    B3["LangGraph ReAct<br/>Plan / Act / Observe<br/>单步护栏"]
+    B4["ReAct 分析<br/>检索 / 读取 / 总结<br/>工具调用"]
   end
 
   subgraph R3["技术落点"]
@@ -189,18 +189,18 @@ direction TB
 
   subgraph R4["输出结果"]
   direction LR
-    D1[("包管理重构 Release Note<br/>变更摘要<br/>影响范围<br/>测试关注点")]
-    D2[("目标升级包<br/>推荐版本<br/>匹配原因<br/>可下载资产")]
-    D3[("设备动作结果<br/>状态查询<br/>升级回执<br/>配置结果<br/>执行证据")]
-    D4[("日志分析报告<br/>关键错误<br/>证据链<br/>根因线索<br/>修复建议")]
+    D1[("Release Note<br/>变更摘要<br/>测试关注")]
+    D2[("目标包<br/>推荐版本<br/>匹配原因")]
+    D3[("设备结果<br/>状态 / 升级 / 配置<br/>执行证据")]
+    D4[("分析报告<br/>关键错误<br/>修复建议")]
   end
 
 end
 
-D1 -. "说明版本变化" .- A2
-D2 -. "进入设备测试" .- A3
-D3 -. "产生日志证据" .- A4
-D4 -. "反馈研发修复" .- A1
+D1 -. "说明版本" .- A2
+D2 -. "进入测试" .- A3
+D3 -. "产生日志" .- A4
+D4 -. "反馈修复" .- A1
 
 classDef head fill:#312E81,stroke:#312E81,stroke-width:1.2px,color:#FFFFFF;
 classDef input fill:#FFF7ED,stroke:#EA580C,stroke-width:1.2px,color:#7C2D12;
