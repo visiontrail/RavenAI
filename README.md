@@ -205,6 +205,15 @@ class A1,A2,A3,A4 input;
 class B1,B2,B3,B4 agent;
 class C1,C2,C3,C4 tech;
 class D1,D2,D3,D4 output;
+
+style A1 font-size:24px
+style A2 font-size:24px
+style A3 font-size:24px
+style A4 font-size:24px
+style D1 font-size:24px
+style D2 font-size:24px
+style D3 font-size:24px
+style D4 font-size:24px
 ```
 
 ## Architecture Overview
