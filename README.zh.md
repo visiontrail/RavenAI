@@ -35,6 +35,7 @@ D --> E["控设备"]
 E --> F["日志散落"]
 F --> G["查日志"]
 G --> H["研发修复"]
+H --> A
 
 P1["沟通反复"] -.-> B
 P2["版本混乱"] -.-> C
@@ -64,6 +65,8 @@ D --> E["Agent控设备"]
 E --> F["日志入库"]
 F --> G["Agent析日志"]
 G --> H["研发修复"]
+H --> I["AI Coding Agent"]
+I --> A
 
 V1["降沟通"] -.-> B
 V2["降交付"] -.-> C
@@ -76,8 +79,8 @@ classDef value fill:#ECFDF5,stroke:#059669,stroke-width:1.3px,color:#064E3B;
 classDef repair fill:#FFF7ED,stroke:#EA580C,stroke-width:1.5px,color:#7C2D12;
 
 class A,F normal;
-class B,C,D,E,G agent;
-class V1,V2,V3,V4 value;
+class B,C,D,E,G,I agent;
+class V1,V2,V3,V4,V5 value;
 class H repair;
 ```
 
