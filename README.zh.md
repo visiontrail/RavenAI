@@ -160,10 +160,10 @@ direction TB
 
   subgraph R1["输入理解"]
   direction LR
-    A1["Git 提交<br/>变更识别<br/>版本背景"]
-    A2["包元数据<br/>版本 / 类型 / 标签<br/>自然语言查询"]
-    A3["测试目标<br/>设备能力<br/>动作识别"]
-    A4["日志与问题<br/>类型识别<br/>metadata.json"]
+    A1["Git 提交<br/>变更代码<br/>版本背景"]
+    A2["包元数据<br/>版本 / 类型 / 标签"]
+    A3["测试目标<br/>设备能力<br/>领域知识"]
+    A4["业务代码<br/>类型识别<br/>领域知识"]
   end
 
   subgraph R2["推理与执行"]
@@ -186,16 +186,16 @@ direction TB
   direction LR
     D1[("Release Note<br/>变更摘要<br/>测试关注")]
     D2[("目标包<br/>推荐版本<br/>匹配原因")]
-    D3[("设备结果<br/>状态 / 升级 / 配置<br/>执行证据")]
-    D4[("分析报告<br/>关键错误<br/>修复建议")]
+    D3[("测试结果<br/>状态 / 升级 / 配置<br/>执行证据")]
+    D4[("问题分析报告<br/>关键错误<br/>修复建议")]
   end
 
 end
 
-D1 -. "说明版本" .- A2
-D2 -. "进入测试" .- A3
-D3 -. "产生日志" .- A4
-D4 -. "反馈修复" .- A1
+D1 -. "说明版本" .- A1
+D2 -. "进入测试" .- A2
+D3 -. "产生日志" .- A3
+D4 -. "反馈修复" .- A4
 
 classDef head fill:#312E81,stroke:#312E81,stroke-width:1.2px,color:#FFFFFF;
 classDef input fill:#FFF7ED,stroke:#EA580C,stroke-width:1.2px,color:#7C2D12;
