@@ -223,12 +223,33 @@ style D4 font-size:24px
 
 ## 技术架构概览
 
+### 系统技术与能力结构
+
+![RavenAI 架构图](Docs/raven-architecture.svg)
+
 - **客户端层**：`RavenClient`、Electron、React、MCP Client、包管理工具、DeviceLinkClient。
-- **AI 编排层**：基于 LangGraph/LangChain 的 ChatAgent 与 LogAnalysisAgent，接入 OpenAI-compatible LLM。
+- **AI 编排层**：基于 Claude Agent SDK 的 ChatAgent 与 LogAnalysisAgent，接入 OpenAI-compatible LLM。
 - **服务层**：`RavenAIService` 中的 FastAPI 服务、Express `package-server`，以及 Electron `update-server`。
 - **通信与任务层**：REST API、WebSocket Device Link、Celery、Redis。
 - **数据与知识层**：升级包、包元数据、日志包、数据库记录和 FAISS 向量索引。
 - **设备工具层**：MCP Server、设备接口封装和面向设备操作与测试的 Python 自动化脚本。
+
+关键架构说明：
+- **提示词分层**：Agent 级基础层（`prompts_config.yaml`）与 Project 级追加层（`data/project_prompts/<project_code>/system_prompt.md`）在运行前合并，编辑即时生效。
+- **Skill 分层（Claude Agent SDK）**：Agent 级（`data/agent_skills/<agent>/store`）与 Project 级（`data/project_skills/<project_code>/store`），运行前物化到 `.claude/skills/`。
+- **Service ⇄ Client 反向穿透**：客户端主动外连 WS 到 `Service:8085/ws/device-link`；心跳 ping/pong + 指数退避重连；设备侧无需公网入站端口。
+- **代码库安全接入**：LogAnalysis / BugFix / ProjectExpert Agent 经 SSH Key / Token 认证访问代码库，克隆为只读副本。
+
+### Agent 上下文分层与装配
+
+![RavenAI Agent 上下文](Docs/raven-agent-context.svg)
+
+每次 Agent 运行前，从两个层次组装上下文：
+
+- **Agent 级（基础层）**：按 agent 名称选取，跨所有项目共享。提示词来自 `prompts_config.yaml`（`claude_agent_<name>`，按 zh/en locale 选择），Skill 来自 `data/agent_skills/<agent>/store`（由 `_registry.json` 控制启用）。
+- **Project 级（追加层）**：按 `project_code` 隔离，用户在前端选定项目后生效。提示词来自 `project_prompts/<code>/system_prompt.md`（编辑即时生效），Skill 来自 `project_skills/<code>/store`（与 Agent Skill 平行；同名则覆盖 Agent 级）。
+- **运行前组装**：最终系统提示词 = base + 项目追加段 + 回复语言指令；Skill 物化到 `.claude/skills/`（Agent Skill 先放入，项目级同名覆盖）；代码库 `git clone` 到 `<workspace>/repo/`（已有则复用 `.git`）。
+- **工作区 `<workspace>/`**：包含合成后的 `system_prompt`、`.claude/skills/<name>/`、`repo/`（只读：Read/Grep/Glob/Bash/git）和 `task.json + logs/`。
 
 ## 仓库结构
 

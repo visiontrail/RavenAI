@@ -220,12 +220,35 @@ style D4 font-size:24px
 
 ## Architecture Overview
 
-- **Client layer**: `RavenClient`, Electron, React, MCP Client, package tools, device-link client.
+> Open [Docs/raven-architecture.html](Docs/raven-architecture.html) and [Docs/raven-agent-context.html](Docs/raven-agent-context.html) in a browser for the interactive version with dark/light theme toggle and export.
+
+### System Technology Structure
+
+![RavenAI Architecture](Docs/raven-architecture.svg)
+
+- **Client layer**: `RavenClient`, Electron, React, MCP Client, package tools, DeviceLinkClient.
 - **AI orchestration layer**: ChatAgent and LogAnalysisAgent built with LangGraph/LangChain and OpenAI-compatible LLM access.
 - **Service layer**: FastAPI services in `RavenAIService`, Express-based `package-server`, and the Electron `update-server`.
 - **Communication and tasks**: REST APIs, WebSocket Device Link, Celery, and Redis.
 - **Data and knowledge layer**: uploaded packages, package metadata, log archives, database records, and FAISS vector indexes.
 - **Device tool layer**: MCP Server, device-interface wrappers, and Python automation scripts for device operation and testing.
+
+Key architectural highlights:
+- **Prompt layering**: Agent-level base prompts (`prompts_config.yaml`) merged with Project-level appended prompts (`data/project_prompts/<project_code>/system_prompt.md`) before each run; edits take effect immediately.
+- **Skill layering (Claude Agent SDK)**: Agent-level skills (`data/agent_skills/<agent>/store`) and Project-level skills (`data/project_skills/<project_code>/store`) are materialized to `.claude/skills/` before each run.
+- **Service ↔ Client reverse tunnel**: Client connects outbound via WebSocket to `Service:8085/ws/device-link`; heartbeat ping/pong with exponential-backoff reconnect; no inbound port required on the device side.
+- **Secure repository access**: LogAnalysis / BugFix / ProjectExpert Agents connect to repositories via SSH Key / Token with credential isolation; repositories are cloned as read-only copies.
+
+### Agent Context Layers and Assembly
+
+![RavenAI Agent Context](Docs/raven-agent-context.svg)
+
+Context for each Agent run is assembled from two layers before the Agent starts:
+
+- **Agent level (base layer)**: Keyed by agent name; shared across all projects. Prompts from `prompts_config.yaml` (`claude_agent_<name>`, zh/en locale). Skills from `data/agent_skills/<agent>/store` controlled by `_registry.json`.
+- **Project level (append layer)**: Isolated by `project_code`; activated when the user selects a project. Prompts from `project_prompts/<code>/system_prompt.md` (edit takes effect immediately). Skills from `project_skills/<code>/store`; same name overrides the Agent-level skill.
+- **Pre-run assembly**: Final system prompt = base + project append + reply-language instruction. Skills are materialized to `.claude/skills/` (Agent Skills first; project-level overrides same name). Repository is `git clone`d to `<workspace>/repo/` (reused if `.git` already exists).
+- **Workspace `<workspace>/`**: Contains the synthesized `system_prompt`, `.claude/skills/<name>/`, `repo/` (read-only: Read/Grep/Glob/Bash/git), and `task.json + logs/`.
 
 ## Repository Layout
 
