@@ -83,151 +83,16 @@ class V1,V2,V3,V4 value;
 class H repair;
 ```
 
-## Business Role Matrix
-
-```mermaid
-%% Suggested export canvas: 1200x900 or 1600x1200, 4:3
-%% Topic: RavenAI business role in the R&D testing workflow
-%%{init: {"theme": "base", "flowchart": {"htmlLabels": true, "nodeSpacing": 24, "rankSpacing": 30, "curve": "basis"}, "themeVariables": {"fontFamily": "Arial, Microsoft YaHei", "primaryTextColor": "#0F172A", "lineColor": "#CBD5E1", "clusterBkg": "#FFFFFF", "clusterBorder": "#CBD5E1"}}}%%
-
-flowchart TB
-
-subgraph M["Business Role Matrix"]
-direction TB
-
-  subgraph H[" "]
-  direction LR
-    H1["R&D Assets"]
-    H2["Package<br/>Delivery"]
-    H3["Faster<br/>Testing"]
-    H4["Analysis<br/>Feedback"]
-  end
-
-  subgraph R1["Core Scenario"]
-  direction LR
-    A1["Code commits<br/>PR / Tag<br/>Version trace"]
-    A2["Package management<br/>Patch / config / full<br/>Upload / download"]
-    A3["Device control<br/>Status / upgrade / config<br/>Fewer commands"]
-    A4["Log submission<br/>Stage / search<br/>Test records"]
-  end
-
-  subgraph R2["Workflow Value"]
-  direction LR
-    B1["Less handoff<br/>Trace changes<br/>Auto notes"]
-    B2["Less version drift<br/>Fast package find<br/>Tag filters"]
-    B3["Lower barrier<br/>Focus on tests<br/>Intent to action"]
-    B4["Faster debug<br/>Extract errors<br/>Feedback loop"]
-  end
-
-  subgraph R3["Direct Output"]
-  direction LR
-    C1[("Commit records<br/>Version history<br/>Release notes")]
-    C2[("Packages<br/>metadata<br/>vector-store")]
-    C3[("Device status<br/>Receipts<br/>Task records")]
-    C4[("Log findings<br/>Root-cause clues<br/>Fix suggestions")]
-  end
-
-end
-
-C1 -. "Supports notes" .- A2
-C2 -. "Select version + Test version" .- A3
-C3 -. "Creates logs" .- A4
-C4 -. "Feeds back" .- A1
-
-classDef head fill:#0F172A,stroke:#0F172A,stroke-width:1.2px,color:#FFFFFF;
-classDef scene fill:#FFF7ED,stroke:#EA580C,stroke-width:1.2px,color:#7C2D12;
-classDef value fill:#EFF6FF,stroke:#2563EB,stroke-width:1.2px,color:#0F172A;
-classDef data fill:#ECFDF5,stroke:#059669,stroke-width:1.2px,color:#064E3B;
-
-class H1,H2,H3,H4 head;
-class A1,A2,A3,A4 scene;
-class B1,B2,B3,B4 value;
-class C1,C2,C3,C4 data;
-```
-
-## Agent Capability Matrix
-
-```mermaid
-%% Suggested export canvas: 1200x900 or 1600x1200, 4:3
-%% Topic: RavenAI agent capabilities
-%%{init: {"theme": "base", "flowchart": {"htmlLabels": true, "nodeSpacing": 24, "rankSpacing": 30, "curve": "basis"}, "themeVariables": {"fontFamily": "Arial, Microsoft YaHei", "primaryTextColor": "#0F172A", "lineColor": "#CBD5E1", "clusterBkg": "#FFFFFF", "clusterBorder": "#CBD5E1"}}}%%
-
-flowchart TB
-
-subgraph M["Agent Capability Matrix"]
-direction TB
-
-  subgraph R1["Input Understanding"]
-  direction LR
-    A1["Git commits<br/>Change detection<br/>Version context"]
-    A2["Package metadata<br/>Version / type / tag<br/>Natural queries"]
-    A3["Tester goals<br/>Device capability<br/>Action detection"]
-    A4["Logs and issues<br/>Type detection<br/>metadata.json"]
-  end
-
-  subgraph R2["Reasoning and Execution"]
-  direction LR
-    B1["Generate notes<br/>Organize commits<br/>Add context"]
-    B2["RAG search<br/>FAISS + LLM<br/>Suggest / rebuild"]
-    B3["LangGraph ReAct<br/>Plan / Act / Observe<br/>Single-step guardrail"]
-    B4["ReAct analysis<br/>Search / read / summarize<br/>Tool calls"]
-  end
-
-  subgraph R3["Technical Anchor"]
-  direction LR
-    C1["Git log<br/>Commit history<br/>Version tags"]
-    C2["package-server<br/>RAGService<br/>PackageService<br/>vector-store"]
-    C3["ChatAgent<br/>Device Link WebSocket<br/>MCP Server<br/>OAM tools / Python scripts"]
-    C4["RavenAIService<br/>Celery + Redis<br/>LogAnalysisAgent<br/>Log toolset"]
-  end
-
-  subgraph R4["Output"]
-  direction LR
-    D1[("Release notes<br/>Change summary<br/>Test focus")]
-    D2[("Target package<br/>Recommended version<br/>Match reason")]
-    D3[("Device result<br/>Status / upgrade / config<br/>Evidence")]
-    D4[("Analysis report<br/>Key errors<br/>Fix suggestions")]
-  end
-
-end
-
-D1 -. "Explains version" .- A2
-D2 -. "Starts testing" .- A3
-D3 -. "Produces logs" .- A4
-D4 -. "Feeds fixes" .- A1
-
-classDef head fill:#312E81,stroke:#312E81,stroke-width:1.2px,color:#FFFFFF;
-classDef input fill:#FFF7ED,stroke:#EA580C,stroke-width:1.2px,color:#7C2D12;
-classDef agent fill:#F5F3FF,stroke:#7C3AED,stroke-width:1.3px,color:#1E1B4B;
-classDef tech fill:#EFF6FF,stroke:#2563EB,stroke-width:1.2px,color:#0F172A;
-classDef output fill:#ECFDF5,stroke:#059669,stroke-width:1.2px,color:#064E3B;
-
-class H1,H2,H3,H4 head;
-class A1,A2,A3,A4 input;
-class B1,B2,B3,B4 agent;
-class C1,C2,C3,C4 tech;
-class D1,D2,D3,D4 output;
-
-style A1 font-size:24px
-style A2 font-size:24px
-style A3 font-size:24px
-style A4 font-size:24px
-style D1 font-size:24px
-style D2 font-size:24px
-style D3 font-size:24px
-style D4 font-size:24px
-```
-
 ## Architecture Overview
 
 > Open [Docs/raven-architecture.html](Docs/raven-architecture.html) and [Docs/raven-agent-context.html](Docs/raven-agent-context.html) in a browser for the interactive version with dark/light theme toggle and export.
 
 ### System Technology Structure
 
-![RavenAI Architecture](Docs/raven-architecture.svg)
+![RavenAI Architecture](Docs/raven-architecture.en.svg)
 
 - **Client layer**: `RavenClient`, Electron, React, MCP Client, package tools, DeviceLinkClient.
-- **AI orchestration layer**: ChatAgent and LogAnalysisAgent built with LangGraph/LangChain and OpenAI-compatible LLM access.
+- **AI orchestration layer**: ChatAgent and LogAnalysisAgent built with the Claude Agent SDK and OpenAI-compatible LLM access.
 - **Service layer**: FastAPI services in `RavenAIService`, Express-based `package-server`, and the Electron `update-server`.
 - **Communication and tasks**: REST APIs, WebSocket Device Link, Celery, and Redis.
 - **Data and knowledge layer**: uploaded packages, package metadata, log archives, database records, and FAISS vector indexes.
@@ -241,7 +106,7 @@ Key architectural highlights:
 
 ### Agent Context Layers and Assembly
 
-![RavenAI Agent Context](Docs/raven-agent-context.svg)
+![RavenAI Agent Context](Docs/raven-agent-context.en.svg)
 
 Context for each Agent run is assembled from two layers before the Agent starts:
 
