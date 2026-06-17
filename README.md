@@ -2,11 +2,13 @@
 
 English | [中文](README.zh.md)
 
-RavenAI is an AI-powered satellite baseband payload development and testing platform. It connects the workflow from engineering commits, release package management, intelligent package retrieval, natural-language device operation, test log submission, and agentic log analysis.
+RavenAI is an AI-powered platform for development and testing workflows. It connects engineering commits, release package management, intelligent package retrieval, natural-language device operation, test log submission, and agentic log analysis into one closed loop.
+
+RavenAI is domain-agnostic by design. Although it was originally conceived for the satellite communications domain, it has evolved into a general-purpose platform meant to carry the development and testing workflow of **any** project — and, through customization, it can even host agents for non-developer roles.
 
 This repository is the top-level workspace for two major subprojects:
 
-- `RavenClient`: an Electron-based desktop client built on Cherry Studio, customized for satellite payload testing, MCP device operations, package creation, and tester-facing AI workflows.
+- `RavenClient`: an Electron-based desktop client built on Cherry Studio, providing MCP device operations, package creation, and AI workflows for developers and testers.
 - `RavenAIService`: backend services for log staging, device-link orchestration, AI chat, asynchronous log processing, package management, and intelligent package search.
 
 ## What RavenAI Solves
@@ -16,7 +18,7 @@ RavenAI is designed around the real R&D testing loop:
 1. Developers submit code and evolve versions through Git.
 2. A lightweight Release Note Agent reads Git history and automatically drafts release notes for package-management refactors.
 3. Reconstructed package management supports package creation, upload, metadata extraction, search, and distribution.
-4. Testers use natural language to operate test devices through RavenClient, ChatAgent, Device Link, MCP Server, OAM tools, and Python automation.
+4. Testers use natural language to operate test devices through RavenClient, ChatAgent, Device Link, MCP Server, device tools, and Python automation.
 5. After testing, logs are submitted to RavenAIService and analyzed by LogAnalysisAgent to produce evidence, issue clues, and feedback for development.
 
 ## R&D Testing Flow Comparison
@@ -223,7 +225,7 @@ style D4 font-size:24px
 - **Service layer**: FastAPI services in `RavenAIService`, Express-based `package-server`, and the Electron `update-server`.
 - **Communication and tasks**: REST APIs, WebSocket Device Link, Celery, and Redis.
 - **Data and knowledge layer**: uploaded packages, package metadata, log archives, database records, and FAISS vector indexes.
-- **Device tool layer**: MCP Server, OAM interface wrappers, and Python automation scripts for satellite payload testing.
+- **Device tool layer**: MCP Server, device-interface wrappers, and Python automation scripts for device operation and testing.
 
 ## Repository Layout
 

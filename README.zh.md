@@ -2,11 +2,13 @@
 
 [English](README.md) | 中文
 
-RavenAI 是面向卫星基带载荷研发测试场景的 AI 平台。它把研发代码提交、升级包管理、智能检索、自然语言设备控制、测试日志提交，以及 Agentic 日志分析串联成一个闭环。
+RavenAI 是一个面向研发与测试工作流的 AI 平台。它把研发代码提交、升级包管理、智能检索、自然语言设备控制、测试日志提交，以及 Agentic 日志分析串联成一个闭环。
+
+RavenAI 不绑定特定业务领域。它最初为卫星通信领域设计，现已演进为一个通用平台，目标是承载**任意项目**的研发与测试工作流；并且通过定制开发，还可以承载非研发角色的 Agent。
 
 本仓库是顶层工作区，包含两个主要子项目：
 
-- `RavenClient`：基于 Electron 与 Cherry Studio 定制的桌面客户端，面向卫星载荷测试、MCP 设备操作、升级包制作和测试人员 AI 工作流。
+- `RavenClient`：基于 Electron 与 Cherry Studio 定制的桌面客户端，面向研发与测试人员，提供 MCP 设备操作、升级包制作和 AI 工作流。
 - `RavenAIService`：后端服务集合，提供日志暂存、设备联动、AI 对话、异步日志处理、包管理和智能包检索等能力。
 
 ## 项目解决的问题
@@ -16,7 +18,7 @@ RavenAI 围绕真实研发测试流程设计：
 1. 研发人员通过 Git 提交代码并推进版本演进。
 2. 简单的 Release Note Agent 读取 Git 提交历史，自动编写包管理重构相关 Release Note。
 3. 重构后的包管理能力支持升级包制作、上传、元数据提取、检索和分发。
-4. 测试人员通过 RavenClient、ChatAgent、Device Link、MCP Server、OAM 工具和 Python 自动化脚本，用自然语言管理测试设备。
+4. 测试人员通过 RavenClient、ChatAgent、Device Link、MCP Server、设备工具和 Python 自动化脚本，用自然语言管理测试设备。
 5. 测试完成后，日志提交至 RavenAIService，由 LogAnalysisAgent 分析并产出证据链、问题线索和研发回流建议。
 
 ## 研发测试流程对比
@@ -226,7 +228,7 @@ style D4 font-size:24px
 - **服务层**：`RavenAIService` 中的 FastAPI 服务、Express `package-server`，以及 Electron `update-server`。
 - **通信与任务层**：REST API、WebSocket Device Link、Celery、Redis。
 - **数据与知识层**：升级包、包元数据、日志包、数据库记录和 FAISS 向量索引。
-- **设备工具层**：MCP Server、OAM 接口封装和面向卫星载荷测试的 Python 自动化脚本。
+- **设备工具层**：MCP Server、设备接口封装和面向设备操作与测试的 Python 自动化脚本。
 
 ## 仓库结构
 
