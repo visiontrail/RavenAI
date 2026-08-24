@@ -2,18 +2,33 @@
 
 English | [中文](README.zh.md)
 
-RavenAI is an AI-powered platform for development and testing workflows. It connects engineering commits, release package management, intelligent package retrieval, natural-language device operation, test log submission, and agentic log analysis into one closed loop.
+> **RavenAI is a lightweight, enterprise-grade, open-source alternative to Manus — built for teams that need AI agents to understand project context, use tools, operate real systems, and carry work from a request to a verifiable result.**
 
-RavenAI is domain-agnostic by design. Although it was originally conceived for the satellite communications domain, it has evolved into a general-purpose platform meant to carry the development and testing workflow of **any** project — and, through customization, it can even host agents for non-developer roles.
+RavenAI provides an open, self-hostable foundation for building and operating practical AI agents. It brings models, prompts, skills, repositories, enterprise services, and real devices into one extensible workspace, so organizations can keep control of their data and infrastructure while adapting agents to their own workflows.
+
+The platform is lightweight enough to fit into an existing technology stack and structured for enterprise use, with project-level context isolation, credential boundaries, configurable model routing, reusable skills, and traceable execution workspaces. RavenAI is domain-agnostic by design: it began in satellite-communications R&D and testing, but its architecture can support any project and, through customization, agents for engineering, operations, support, and other business roles.
+
+RavenAI is an independent open-source project and is not affiliated with Manus.
 
 This repository is the top-level workspace for two major subprojects:
 
 - `RavenClient`: an Electron-based desktop client built on Cherry Studio, providing MCP device operations, package creation, and AI workflows for developers and testers.
 - `RavenAIService`: backend services for log staging, device-link orchestration, AI chat, asynchronous log processing, package management, and intelligent package search.
 
+## Mission
+
+Our mission is to make capable AI agents accessible to every AI builder and enterprise team — not as another chatbot or a closed demo, but as an open platform that can be deployed, understood, extended, and trusted in real work.
+
+RavenAI focuses on four goals:
+
+- **Lightweight adoption**: integrate with existing models, repositories, services, tools, and devices without rebuilding the entire enterprise stack.
+- **End-to-end execution**: move beyond conversation by allowing agents to gather context, invoke tools, perform tasks, preserve evidence, and return results.
+- **Enterprise-ready foundations**: keep projects, credentials, knowledge, and execution contexts separated and manageable.
+- **Open extensibility**: let the community inspect, self-host, customize, and contribute agents, skills, tools, and workflows.
+
 ## What RavenAI Solves
 
-RavenAI is designed around the real R&D testing loop:
+R&D and testing is RavenAI's first deeply integrated enterprise scenario. It connects the real workflow into a closed loop:
 
 1. Developers submit code and evolve versions through Git.
 2. A lightweight Release Note Agent reads Git history and automatically drafts release notes for package-management refactors.
