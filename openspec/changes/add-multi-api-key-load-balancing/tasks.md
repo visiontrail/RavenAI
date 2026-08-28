@@ -18,5 +18,5 @@
 
 - [x] 4.1 Add backend and frontend regression coverage for pool persistence, secrecy, round-robin selection, Redis fallback, and 429 rotation
 - [x] 4.2 Run focused and full relevant test/build checks, review the scoped diff, and commit the RavenAIService plus root OpenSpec/gitlink changes
-- [ ] 4.3 Configure all 15 RavenAI multi keys in local Docker and verify health, persisted runtime state, DeepSeek single-key preservation, and served artifacts
-- [ ] 4.4 Execute a concurrent high-RPM Agent burst and complete Browser/Computer acceptance with backend and OneAPI usage evidence
+- [x] 4.3 Configure all 15 RavenAI multi keys in local Docker and verify health, persisted runtime state, DeepSeek single-key preservation, and served artifacts
+- [x] 4.4 Execute a concurrent high-RPM Agent burst and complete Browser/Computer acceptance with backend and OneAPI usage evidence
