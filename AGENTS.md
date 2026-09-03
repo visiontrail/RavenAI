@@ -32,7 +32,7 @@ ssh guoliang@relay.yhroot.com
 
 - Password: `Tgb.880925`
 - At the initial `Opt>` prompt, press Enter without selecting an option.
-- At `[Host]>`, enter `3` to select `nr-test` (`10.60.11.3`).
+- At `[Host]>`, enter `4` to select `nr-test` (`10.60.11.3`).
 - At `ID>`, enter `1` to select the `yhsudo` account. ID `2` is the SSH-key variant and is not the documented default.
 - After login, become root and enter the RavenAIService production checkout:
 
@@ -46,7 +46,7 @@ The expected interactive flow is:
 ```text
 guoliang@relay.yhroot.com's password: <use the password above>
 Opt> <press Enter>
-[Host]> 3
+[Host]> 4
 ID> 1
 yhsudo@ubuntu:~$ sudo su
 root@ubuntu:/home/yhsudo# cd /home/guoliang/RavenAIService
